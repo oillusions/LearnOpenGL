@@ -1,0 +1,4 @@
+#pragma once
+
+#define VERSION "@VERSION@"
+#define ASSETS_DIR "@ASSETS_DIR@"
