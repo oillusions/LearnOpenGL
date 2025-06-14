@@ -4,8 +4,6 @@ file(GLOB_RECURSE RS_SOURCES
 
 add_executable(${PROJECT_NAME} main.cpp
         ${RS_SOURCES}
-        rs/include/render_system.h
-        rs/src/render_system.cpp
 
 )
 
@@ -23,6 +21,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/include
         "${CMAKE_CURRENT_SOURCE_DIR}/"
-        "${CMAKE_CURRENT_SOURCE_DIR}/config/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/rs/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/asset/include/interface/"
+        "${CMAKE_CURRENT_SOURCE_DIR}/asset/include/"
+        "${CMAKE_CURRENT_SOURCE_DIR}/asset/loader"
+        "${CMAKE_CURRENT_SOURCE_DIR}/asset"
+        "${CMAKE_CURRENT_SOURCE_DIR}/rs/include/"
 )

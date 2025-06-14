@@ -1,13 +1,11 @@
 #pragma once
-
-#include <GLInclude.h>
-
 #include "shader.h"
 
 class ShaderProgram {
-        protected:
-            static unsigned int shaderProgramID;
-
-        public:
-            ShaderProgram(Shader &vertexShader, Shader &fragmentShader);
+    public:
+        ShaderProgram() = default;
+        ShaderProgram(const Shader& vertex_Shader, const Shader& fragment_shader);
+        GLint getProgramID() const {return programID;}
+    private:
+        GLint programID{};
 };

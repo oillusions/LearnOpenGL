@@ -1,16 +1,18 @@
 #pragma once
+#include <string>
+#include <memory>
 
-#include <GLInclude.h>
+#include "glad/glad.h"
 
 class Shader {
-	protected:
-		GLint shaderID;
-		GLenum const shaderType;
-	public:
-		Shader(GLenum shaderType);
-		void compile(char* data);
-		GLenum getShaderType();
-		void close();
-
-	~Shader();
+    public:
+        explicit Shader(GLenum shaderType);
+        void compile(const std::string& shader_content) const;
+        std::shared_ptr<std::string> getShaderContent() const {return shader_content;};
+        GLint getShaderID() const {return shaderID;}
+        GLenum getShaderType() const {return shaderType;}
+    private:
+        GLint shaderID = 0;
+        GLenum shaderType;
+        std::shared_ptr<std::string> shader_content;
 };
