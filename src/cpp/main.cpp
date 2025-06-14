@@ -189,7 +189,7 @@ int main()
 	mat4 perspectiveMatrix = perspective(radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 	tran = tran * perspectiveMatrix;
 	tran = scale(tran, vec3(0.5f, 0.5f, 1.0f));
-	tran = translate(tran, vec3(0, -1, -2));
+	tran = translate(tran, vec3(0, 0, -2));
 	tran = rotate(tran, radians(45.0f), vec3(-1.0f, 0.0f, 0.0f));
 
 	stbi_image_free(wall_imgdata);
