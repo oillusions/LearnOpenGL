@@ -14,7 +14,7 @@ class TextLoader : public AssetLoader<Text> {
             if (asset_file.is_open()) {
                 std::stringstream buffer;
                 buffer << asset_file.rdbuf();
-                listener(make_shared<Text>(buffer.str()));
+                listener(std::make_shared<Text>(buffer.str()));
             } else {
                 std::cerr << "could not open file: " << asset_path.string() << std::endl;
             }

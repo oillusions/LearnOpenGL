@@ -7,6 +7,8 @@
 #include "shader_content.h"
 #include "shader_content_loader.h"
 #include "shader_program.h"
+#include "text.h"
+#include "text_loader.h"
 
 using namespace std;
 using namespace glm;
@@ -26,25 +28,9 @@ void processInput(GLFWwindow* window)
 	}
 }
 
-char* LoadShaderCode(string shaderName) {
-	ifstream tmpIFile("assets/shader/" + shaderName + ".shader");
-	if (!tmpIFile.is_open()) {
-		cout << "NoShader" << shaderName << endl;
-		return nullptr;
-	}
-	stringstream tmpShaderStream;
-	tmpShaderStream << tmpIFile.rdbuf();
-	tmpIFile.close();
-	string str = tmpShaderStream.str();
-	cout << "LoadShader: " << shaderName << endl;
-	char* data = new char[str.size() + 2];
-	memcpy(data, str.c_str(), str.size());
-	data[str.size()] = '\0';
-	return data;
-}
-
 void initAssetManager() {
 	AssetManager::registerLoader<ShaderContent>(make_shared<ShaderContentLoader>());
+	AssetManager::registerLoader<Text>(make_shared<TextLoader>());
 }
 
 map<type_index, shared_ptr<BaseAssetLoader>> AssetManager::loaders;
@@ -54,13 +40,18 @@ int main()
 {
 	initAssetManager();
 
+	string name;
+	AssetManager::request<Text>("assets/text/test.txt", [&name] (shared_ptr<Text> text) {
+		name = text->getText();
+	});
+
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 600, "test", NULL, NULL); //��������
+	GLFWwindow* window = glfwCreateWindow(800, 600, name.c_str(), NULL, NULL); //��������
 	if (window == NULL) {
 		cout << "glfw窗口创建失败" << endl;
 		glfwTerminate();
