@@ -21,7 +21,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/include
         "${CMAKE_CURRENT_SOURCE_DIR}/"
-        "${CMAKE_CURRENT_SOURCE_DIR}/util/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/logger/include/interface"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/logger/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/logger/impl"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/logger"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/thread/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/util/thread"
         "${CMAKE_CURRENT_SOURCE_DIR}/asset/include/interface/"
         "${CMAKE_CURRENT_SOURCE_DIR}/asset/include/"
         "${CMAKE_CURRENT_SOURCE_DIR}/asset/loader"

@@ -11,7 +11,7 @@ class ShaderContent {
         explicit ShaderContent(std::string shader_content) : shader_content(move(shader_content)) {
 
         };
-        std::string getShaderContent() {return move(shader_content);};
+        const std::string& getShaderContent() {return shader_content;};
 
 
     private:

@@ -1,6 +1,7 @@
 ﻿#include <GLInclude.h>
 #include <map>
 #include <memory>
+#include <thread>
 #include <typeindex>
 
 #include "asset_manager.h"
@@ -210,6 +211,7 @@ int main()
 		glfwSwapBuffers(window); //����������
 		glfwPollEvents();  //�����¼�
 	}
+
 
 	glfwTerminate();
 	return 0;
