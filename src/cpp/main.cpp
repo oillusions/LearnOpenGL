@@ -24,7 +24,7 @@ void processInput(GLFWwindow* window)
 		glClearColor(1, 1, 1, 1);
 	}
 	else {
-		glClearColor(0, 0, 0, 1);
+		glClearColor(0, 0, 0, 0);
 	}
 }
 
@@ -41,7 +41,7 @@ int main()
 	initAssetManager();
 
 	string name;
-	AssetManager::request<Text>("assets/text/test.txt", [&name] (shared_ptr<Text> text) {
+	AssetManager::request<Text>("assets/text/name.txt", [&name] (shared_ptr<Text> text) {
 		name = text->getText();
 	});
 
@@ -49,10 +49,12 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //
+	glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
+	// glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 600, name.c_str(), NULL, NULL); //��������
-	if (window == NULL) {
+	GLFWwindow* window = glfwCreateWindow(800, 600, name.c_str(), nullptr, nullptr); //��������
+	if (window == nullptr) {
 		cout << "glfw窗口创建失败" << endl;
 		glfwTerminate();
 		return -1;
@@ -202,7 +204,7 @@ int main()
 		glBindVertexArray(vao);		  //绑定顶点数组对象
 		glDrawElements(GL_TRIANGLES, sizeof(indices)/ sizeof(int), GL_UNSIGNED_INT, 0);
 
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 		//glBindVertexArray(0);
 
 		glfwSwapBuffers(window); //����������
